@@ -23,3 +23,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/Vectores_01_02_23/target/
+/ManejoMatrices/ManejoMatrices/target/
+/manrjoMatricesDinamicas_3_2_23/target/
+/MatricesTotalmenteDinamicasMultiplicacion_3_2_23/target/
