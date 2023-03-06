@@ -6,7 +6,7 @@
 package vista;
 
 
-import controlador.clsAulas;
+import controlador.clsEmpleado;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientoAulas extends javax.swing.JInternalFrame {
+public class frmMantenimientoDepartamento extends javax.swing.JInternalFrame {
 
     public void llenadoDeCombos() {
         /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -34,9 +34,9 @@ public class frmMantenimientoAulas extends javax.swing.JInternalFrame {
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
         modelo.addColumn("Estatus");
-        clsAulas aulas = new clsAulas();
+        clsEmpleado aulas = new clsEmpleado();
         //VendedorDAO vendedorDAO = new VendedorDAO();
-        List<clsAulas> listaAulas = aulas.getListadoAulas();
+        List<clsEmpleado> listaAulas = aulas.getListadoAulas();
         tablaUsuarios.setModel(modelo);
         String[] dato = new String[3];
         for (int i = 0; i < listaAulas.size(); i++) {
@@ -47,7 +47,7 @@ public class frmMantenimientoAulas extends javax.swing.JInternalFrame {
         }       
     }
 
-    public frmMantenimientoAulas() {
+    public frmMantenimientoDepartamento() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -298,7 +298,7 @@ public class frmMantenimientoAulas extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int registrosBorrados=0;
-        clsAulas aula = new clsAulas();
+        clsEmpleado aula = new clsEmpleado();
         aula.setcodigoAula(txtbuscado.getText());
         registrosBorrados=aula.setBorrarAulas(aula);
         JOptionPane.showMessageDialog(null, "Registro Borrado\n", 
@@ -308,7 +308,7 @@ public class frmMantenimientoAulas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        clsAulas aula = new clsAulas();
+        clsEmpleado aula = new clsEmpleado();
         aula.setcodigoAula(txtCodigo.getText());
         aula.setNombreAula(txtNombre.getText());
         aula.setEstatusAula(txtEstatus.getText());
@@ -321,7 +321,7 @@ public class frmMantenimientoAulas extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        clsAulas aula = new clsAulas();
+        clsEmpleado aula = new clsEmpleado();
         //usuario.setNombreUsuario(txtbuscado.getText());        
         aula.setcodigoAula(txtbuscado.getText());        
         aula = aula.getBuscarInformacionAulaPorCodigo(aula);
@@ -332,7 +332,7 @@ public class frmMantenimientoAulas extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        clsAulas aula = new clsAulas();
+        clsEmpleado aula = new clsEmpleado();
         aula.setcodigoAula(txtbuscado.getText());
         aula.setNombreAula(txtNombre.getText());
         aula.setEstatusAula(txtEstatus.getText());

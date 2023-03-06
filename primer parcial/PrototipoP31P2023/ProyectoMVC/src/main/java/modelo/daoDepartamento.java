@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import controlador.clsFacultad;
+import controlador.clsEmpleado;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,35 +14,34 @@ import java.util.List;
  *
  * @author visitante
  */
-//daoFacultad, Hecho por Nelson Josué Pineda Culajay, 9959-21-10015
-public class daoFacultad {
+public class daoDepartamento {
 
-   private static final String SQL_SELECT = "SELECT codigo_facultad, nombre_facultad, estatus_facultad FROM facultades";
-    private static final String SQL_INSERT = "INSERT INTO facultades (codigo_facultad, nombre_facultad, estatus_facultad) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE facultades SET nombre_facultad=?, estatus_facultad=? WHERE codigo_facultad = ?";
-    private static final String SQL_DELETE = "DELETE FROM facultades WHERE codigo_facultad=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT codigo_facultad, nombre_facultad, estatus_facultad FROM facultades WHERE nombre_facultad = ?";
-    private static final String SQL_SELECT_ID = "SELECT codigo_facultad, nombre_facultad, estatus_facultad FROM facultades WHERE codigo_facultad = ?";    
+    private static final String SQL_SELECT = "SELECT codigo_aula, nombre_aula, estatus_aula FROM aulas";
+    private static final String SQL_INSERT = "INSERT INTO aulas (codigo_aula, nombre_aula, estatus_aula) VALUES(?,?, ?)";
+    private static final String SQL_UPDATE = "UPDATE aulas SET nombre_aula=?, estatus_aula=? WHERE codigo_aula = ?";
+    private static final String SQL_DELETE = "DELETE FROM aulas WHERE codigo_aula=?";
+    private static final String SQL_SELECT_NOMBRE = "SELECT codigo_aula, nombre_aula, estatus_aula FROM aulas WHERE nombre_aula = ?";
+    private static final String SQL_SELECT_ID = "SELECT codigo_aula, nombre_aula, estatus_aula FROM aulas WHERE codigo_aula = ?";    
 
-    public List<clsFacultad> consultaFacultades() {
+    public List<clsEmpleado> consultaAulas() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<clsFacultad> facultades = new ArrayList<>();
+        List<clsEmpleado> aulas = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String cod = rs.getString("codigo_facultad");
-                String Nombre = rs.getString("nombre_facultad");
-                String Estatus = rs.getString("estatus_facultad");
-                clsFacultad facultad = new clsFacultad();
-                facultad.setCodFacultad(cod);
-                facultad.setNombreFacultad(Nombre);
-                facultad.setEstatusFacultad(Estatus);
-                facultades.add(facultad);
+                String codigo = rs.getString("codigo_aula");
+                String nombre = rs.getString("nombre_aula");
+                String estatus = rs.getString("estatus_aula");
+                clsEmpleado aula = new clsEmpleado();
+                aula.setcodigoAula(codigo);
+                aula.setNombreAula(nombre);
+                aula.setEstatusAula(estatus);
+                aulas.add(aula);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -51,23 +50,23 @@ public class daoFacultad {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return facultades;
+        return aulas;
     }
 
-    public int ingresaFacultades(clsFacultad facultad) {
+    public int ingresaAulas(clsEmpleado aula) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, facultad.getCodFacultad());
-            stmt.setString(2, facultad.getNombreFacultad());
-            stmt.setString(3, facultad.getEstatusFacultad());
+            stmt.setString(1, aula.getCodidoAula());
+            stmt.setString(2, aula.getNombreAula());
+            stmt.setString(3, aula.getEstatusAula());
+
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
             System.out.println("Registros afectados:" + rows);
-            
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -78,17 +77,17 @@ public class daoFacultad {
         return rows;
     }
 
-    public int actualizaFacultades(clsFacultad facultad) {
+    public int actualizaAulas(clsEmpleado aula) {
         Connection conn = null;
-        PreparedStatement stmt =null;
+        PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, facultad.getNombreFacultad());
-            stmt.setString(2, facultad.getEstatusFacultad());
-            stmt.setString(3, facultad.getCodFacultad());
+            stmt.setString(1, aula.getNombreAula());
+            stmt.setString(2, aula.getEstatusAula());
+            stmt.setString(3, aula.getCodidoAula());
 
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
@@ -103,7 +102,7 @@ public class daoFacultad {
         return rows;
     }
 
-    public int borrarFacultades(clsFacultad facultad) {
+    public int borrarAulas(clsEmpleado aula) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -112,7 +111,7 @@ public class daoFacultad {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setString(1, facultad.getCodFacultad());
+            stmt.setString(1, aula.getCodidoAula());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -125,27 +124,27 @@ public class daoFacultad {
         return rows;
     }
 
-    public clsFacultad consultaFacultadesPorNombre(clsFacultad facultad) {
+    public clsEmpleado consultaAulasPorNombre(clsEmpleado aula) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + facultad);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + aula);
             stmt = conn.prepareStatement(SQL_SELECT_NOMBRE);
             //stmt.setInt(1, usuario.getIdUsuario());            
-            stmt.setString(1, facultad.getNombreFacultad());
+            stmt.setString(1, aula.getNombreAula());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String cod = rs.getString("codigo_facultad");
-                String Nombre = rs.getString("nombre_facultad");
-                String Estatus = rs.getString("estatus_facultad");
+                String codigo = rs.getString("codigo_aula");
+                String nombre = rs.getString("nombre_aula");
+                String estatus = rs.getString("estatus_aula");
 
                 //usuario = new clsUsuario();
-                facultad.setCodFacultad(cod);
-                facultad.setNombreFacultad(Nombre);
-                facultad.setEstatusFacultad(Estatus);
-                System.out.println(" registro consultado: " + facultad);                
+                aula.setcodigoAula(codigo);
+                aula.setNombreAula(nombre);
+                aula.setEstatusAula(estatus);
+                System.out.println(" registro consultado: " + aula);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -157,29 +156,29 @@ public class daoFacultad {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return facultad;
+        return aula;
     }
-    public clsFacultad consultaFacultadesPorId(clsFacultad facultad) {
+    public clsEmpleado consultaAulasPorCodigo(clsEmpleado aula) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + facultad);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + aula);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setString(1, facultad.getCodFacultad());            
+            stmt.setString(1, aula.getCodidoAula());            
             //stmt.setString(1, usuario.getNombreUsuario());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String cod = rs.getString("codigo_facultad");
-                String Nombre = rs.getString("nombre_facultad");
-                String Estatus = rs.getString("estatus_facultad");
+                String codigo = rs.getString("codigo_aula");
+                String nombre = rs.getString("nombre_aula");
+                String estatus = rs.getString("estatus_aula");
 
                 //usuario = new clsUsuario();
-                facultad.setCodFacultad(cod);
-                facultad.setNombreFacultad(Nombre);
-                facultad.setEstatusFacultad(Estatus);
-                System.out.println(" registro consultado: " + facultad);                
+                aula.setcodigoAula(codigo);
+                aula.setNombreAula(nombre);
+                aula.setEstatusAula(estatus);
+                System.out.println(" registro consultado: " + aula);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -191,6 +190,6 @@ public class daoFacultad {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return facultad;
+        return aula;
     }    
 }

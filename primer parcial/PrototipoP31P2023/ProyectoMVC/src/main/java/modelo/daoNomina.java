@@ -1,11 +1,11 @@
-             /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package modelo;
 
-import controlador.clsCursos;
+import controlador.clsDepartamento;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,34 +14,35 @@ import java.util.List;
  *
  * @author visitante
  */
-public class daoCursos {
+//daoFacultad, Hecho por Nelson Josué Pineda Culajay, 9959-21-10015
+public class daoNomina {
 
-    private static final String SQL_SELECT = "SELECT codigo_curso, nombre_curso, estatus_curso FROM cursos";
-    private static final String SQL_INSERT = "INSERT INTO cursos(codigo_curso, nombre_curso, estatus_curso) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE cursos SET nombre_curso=?, estatus_curso=? WHERE codigo_curso = ?";
-    private static final String SQL_DELETE = "DELETE FROM cursos WHERE codigo_curso=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT codigo_curso, nombre_curso, estatus_curso FROMt cursos WHERE nombre_curso = ?";
-    private static final String SQL_SELECT_ID = "SELECT codigo_curso, nombre_curso, estatus_curso FROM cursos  WHERE codigo_curso = ?";    
+   private static final String SQL_SELECT = "SELECT codigo_facultad, nombre_facultad, estatus_facultad FROM facultades";
+    private static final String SQL_INSERT = "INSERT INTO facultades (codigo_facultad, nombre_facultad, estatus_facultad) VALUES(?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE facultades SET nombre_facultad=?, estatus_facultad=? WHERE codigo_facultad = ?";
+    private static final String SQL_DELETE = "DELETE FROM facultades WHERE codigo_facultad=?";
+    private static final String SQL_SELECT_NOMBRE = "SELECT codigo_facultad, nombre_facultad, estatus_facultad FROM facultades WHERE nombre_facultad = ?";
+    private static final String SQL_SELECT_ID = "SELECT codigo_facultad, nombre_facultad, estatus_facultad FROM facultades WHERE codigo_facultad = ?";    
 
-    public List<clsCursos> consultaCursos() {
+    public List<clsDepartamento> consultaFacultades() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<clsCursos> cursos = new ArrayList<>();
+        List<clsDepartamento> facultades = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String codigo = rs.getString("codigo_curso");
-                String nombre = rs.getString("nombre_curso");
-                String estatus = rs.getString("estatus_curso");
-                clsCursos curso = new clsCursos();
-                curso.setCodigo_curso(codigo);
-                curso.setNombre_curso(nombre);
-                curso.setEstatus_curso(estatus);
-                cursos.add(curso);        
+                String cod = rs.getString("codigo_facultad");
+                String Nombre = rs.getString("nombre_facultad");
+                String Estatus = rs.getString("estatus_facultad");
+                clsDepartamento facultad = new clsDepartamento();
+                facultad.setCodFacultad(cod);
+                facultad.setNombreFacultad(Nombre);
+                facultad.setEstatusFacultad(Estatus);
+                facultades.add(facultad);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -50,23 +51,23 @@ public class daoCursos {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return cursos;
+        return facultades;
     }
 
-    public int ingresaCursos(clsCursos curso) {
+    public int ingresaFacultades(clsDepartamento facultad) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, curso.getCodigo_curso());
-            stmt.setString(2, curso.getNombre_curso());
-            stmt.setString(3, curso.getEstatus_curso());
-
+            stmt.setString(1, facultad.getCodFacultad());
+            stmt.setString(2, facultad.getNombreFacultad());
+            stmt.setString(3, facultad.getEstatusFacultad());
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
             System.out.println("Registros afectados:" + rows);
+            
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -77,17 +78,17 @@ public class daoCursos {
         return rows;
     }
 
-    public int actualizaCursos(clsCursos curso) {
+    public int actualizaFacultades(clsDepartamento facultad) {
         Connection conn = null;
-        PreparedStatement stmt = null;
+        PreparedStatement stmt =null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, curso.getNombre_curso());
-            stmt.setString(2,curso.getEstatus_curso());
-            stmt.setString(3,curso.getCodigo_curso());
+            stmt.setString(1, facultad.getNombreFacultad());
+            stmt.setString(2, facultad.getEstatusFacultad());
+            stmt.setString(3, facultad.getCodFacultad());
 
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
@@ -102,7 +103,7 @@ public class daoCursos {
         return rows;
     }
 
-    public int borrarCursos(clsCursos curso) {
+    public int borrarFacultades(clsDepartamento facultad) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -111,7 +112,7 @@ public class daoCursos {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setString(1, curso.getCodigo_curso());
+            stmt.setString(1, facultad.getCodFacultad());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -124,27 +125,27 @@ public class daoCursos {
         return rows;
     }
 
-    public clsCursos consultaCursosPorNombre(clsCursos curso) {
+    public clsDepartamento consultaFacultadesPorNombre(clsDepartamento facultad) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + curso);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + facultad);
             stmt = conn.prepareStatement(SQL_SELECT_NOMBRE);
             //stmt.setInt(1, usuario.getIdUsuario());            
-            stmt.setString(1, curso.getNombre_curso());
+            stmt.setString(1, facultad.getNombreFacultad());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String id = rs.getString("codigo_curso");
-                String nombre = rs.getString("nombre_curso");
-                String estatus = rs.getString("estatus_curso");
+                String cod = rs.getString("codigo_facultad");
+                String Nombre = rs.getString("nombre_facultad");
+                String Estatus = rs.getString("estatus_facultad");
 
                 //usuario = new clsUsuario();
-                curso.setCodigo_curso(id);
-                curso.setNombre_curso(nombre);
-                curso.setEstatus_curso(estatus);
-                System.out.println(" registro consultado: " + curso);                
+                facultad.setCodFacultad(cod);
+                facultad.setNombreFacultad(Nombre);
+                facultad.setEstatusFacultad(Estatus);
+                System.out.println(" registro consultado: " + facultad);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -156,29 +157,29 @@ public class daoCursos {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return curso;
+        return facultad;
     }
-    public clsCursos consultaCursosporId(clsCursos curso) {
+    public clsDepartamento consultaFacultadesPorId(clsDepartamento facultad) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + curso);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + facultad);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setString(1, curso.getCodigo_curso());            
+            stmt.setString(1, facultad.getCodFacultad());            
             //stmt.setString(1, usuario.getNombreUsuario());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String codigo = rs.getString("codigo_curso");
-                String nombre = rs.getString("nombre_curso");
-                String estatus = rs.getString("estatus_curso");
+                String cod = rs.getString("codigo_facultad");
+                String Nombre = rs.getString("nombre_facultad");
+                String Estatus = rs.getString("estatus_facultad");
 
                 //usuario = new clsUsuario();
-                curso.setCodigo_curso(codigo);
-                curso.setNombre_curso(nombre);
-                curso.setEstatus_curso(estatus);
-                System.out.println(" registro consultado: " + curso);                
+                facultad.setCodFacultad(cod);
+                facultad.setNombreFacultad(Nombre);
+                facultad.setEstatusFacultad(Estatus);
+                System.out.println(" registro consultado: " + facultad);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -190,6 +191,6 @@ public class daoCursos {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return curso;
+        return facultad;
     }    
 }

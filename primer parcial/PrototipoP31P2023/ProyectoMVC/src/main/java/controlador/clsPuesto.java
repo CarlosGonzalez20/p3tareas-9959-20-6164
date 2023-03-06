@@ -5,12 +5,12 @@
  */
 package controlador;
 import java.util.List;
-import modelo.daoAlumnos;
+import modelo.daoConcepto;
 /**
  *
  * @author visitante
  */
-public class clsAlumnos {
+public class clsPuesto {
     private String CarnetAlumno;
     private String NombreAlumno;
     private String DireccionAlumno;
@@ -66,7 +66,7 @@ public class clsAlumnos {
         this.EstatusAlumno = EstatusAlumno;
     }
 
-    public clsAlumnos(String CarnetAlumno, String NombreAlumno, String DireccionAlumno, String TelefonoAlumno, String EmailAlumno, String EstatusAlumno) {
+    public clsPuesto(String CarnetAlumno, String NombreAlumno, String DireccionAlumno, String TelefonoAlumno, String EmailAlumno, String EstatusAlumno) {
         this.CarnetAlumno = CarnetAlumno;
         this.NombreAlumno = NombreAlumno;
         this.DireccionAlumno = DireccionAlumno;
@@ -75,7 +75,7 @@ public class clsAlumnos {
         this.EstatusAlumno = EstatusAlumno;
     }
 
-    public clsAlumnos(String CarnetAlumno, String NombreAlumno, String DireccionAlumno, String TelefonoAlumno, String EmailAlumno) {
+    public clsPuesto(String CarnetAlumno, String NombreAlumno, String DireccionAlumno, String TelefonoAlumno, String EmailAlumno) {
         this.CarnetAlumno = CarnetAlumno;
         this.NombreAlumno = NombreAlumno;
         this.DireccionAlumno = DireccionAlumno;
@@ -83,29 +83,29 @@ public class clsAlumnos {
         this.EmailAlumno = EmailAlumno;
     }
 
-    public clsAlumnos(String CarnetAlumno, String NombreAlumno, String DireccionAlumno, String TelefonoAlumno) {
+    public clsPuesto(String CarnetAlumno, String NombreAlumno, String DireccionAlumno, String TelefonoAlumno) {
         this.CarnetAlumno = CarnetAlumno;
         this.NombreAlumno = NombreAlumno;
         this.DireccionAlumno = DireccionAlumno;
         this.TelefonoAlumno = TelefonoAlumno;
     }
 
-    public clsAlumnos(String CarnetAlumno, String NombreAlumno, String DireccionAlumno) {
+    public clsPuesto(String CarnetAlumno, String NombreAlumno, String DireccionAlumno) {
         this.CarnetAlumno = CarnetAlumno;
         this.NombreAlumno = NombreAlumno;
         this.DireccionAlumno = DireccionAlumno;
     }
 
-    public clsAlumnos(String CarnetAlumno, String NombreAlumno) {
+    public clsPuesto(String CarnetAlumno, String NombreAlumno) {
         this.CarnetAlumno = CarnetAlumno;
         this.NombreAlumno = NombreAlumno;
     }
 
-    public clsAlumnos(String CarnetAlumno) {
+    public clsPuesto(String CarnetAlumno) {
         this.CarnetAlumno = CarnetAlumno;
     }
 
-    public clsAlumnos() {
+    public clsPuesto() {
     }
 
     
@@ -114,35 +114,35 @@ public class clsAlumnos {
         return "clsAlumnos{" + "CarnetAlumno=" + CarnetAlumno + ", NombreAlumno=" + NombreAlumno + ", DireccionAlumno=" + DireccionAlumno + ", TelefonoAlumno=" + TelefonoAlumno + ", EmailAlumno=" + EmailAlumno + ", EstatusAlumno=" + EstatusAlumno + '}';
     }
     //Metodos de acceso a la capa controlador
-    public clsAlumnos getBuscarInformacionAlumnosPorNombre(clsAlumnos alumno)
+    public clsPuesto getBuscarInformacionAlumnosPorNombre(clsPuesto alumno)
     {
-        daoAlumnos daoalumnos = new daoAlumnos();
+        daoConcepto daoalumnos = new daoConcepto();
         return daoalumnos.consultaAlumnosPorNombre(alumno);
     }
-    public clsAlumnos getBuscarInformacionAlumnosPorCarnet(clsAlumnos alumno)
+    public clsPuesto getBuscarInformacionAlumnosPorCarnet(clsPuesto alumno)
     {
-        daoAlumnos daoalumnos = new daoAlumnos();
+        daoConcepto daoalumnos = new daoConcepto();
         return daoalumnos.consultaAlumnosPorCarnet(alumno);
     }    
-    public List<clsAlumnos> getListadoAlumnos()
+    public List<clsPuesto> getListadoAlumnos()
     {
-        daoAlumnos daoalumnos = new daoAlumnos();
-        List<clsAlumnos> listadoAlumnos = daoalumnos.consultaAlumnos();
+        daoConcepto daoalumnos = new daoConcepto();
+        List<clsPuesto> listadoAlumnos = daoalumnos.consultaAlumnos();
         return listadoAlumnos;
     }
-    public int setBorrarAlumnos(clsAlumnos alumno)
+    public int setBorrarAlumnos(clsPuesto alumno)
     {
-        daoAlumnos daoalumnos = new daoAlumnos();
+        daoConcepto daoalumnos = new daoConcepto();
         return daoalumnos.borrarAlumnos(alumno);
     }          
-    public int setIngresarAlumnos(clsAlumnos alumno)
+    public int setIngresarAlumnos(clsPuesto alumno)
     {
-        daoAlumnos daoalumnos = new daoAlumnos();
+        daoConcepto daoalumnos = new daoConcepto();
         return daoalumnos.ingresaAlumnos(alumno);
     }              
-    public int setModificarAlumnos(clsAlumnos alumno)
+    public int setModificarAlumnos(clsPuesto alumno)
     {
-        daoAlumnos daoalumnos = new daoAlumnos();
+        daoConcepto daoalumnos = new daoConcepto();
         return daoalumnos.actualizaAlumnos(alumno);
     }              
 }

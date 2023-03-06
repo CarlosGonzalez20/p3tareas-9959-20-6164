@@ -5,30 +5,30 @@
  */
 package controlador;
 import java.util.List;
-import modelo.daoFacultad;
+import modelo.daoNomina;
 /**
  *
  * @author visitante
  */
 //clsFacultad, Hecho por Nelson Josué Pineda Culajay, 9959-21-10015
-public class clsFacultad {
+public class clsDepartamento {
     private String CodFacultad;
     private String NombreFacultad;
     private String EstatusFacultad;
 
-    public clsFacultad() {
+    public clsDepartamento() {
     }
 
-    public clsFacultad(String CodFacultad) {
+    public clsDepartamento(String CodFacultad) {
         this.CodFacultad = CodFacultad;
     }
 
-    public clsFacultad(String CodFacultad, String NombreFacultad) {
+    public clsDepartamento(String CodFacultad, String NombreFacultad) {
         this.CodFacultad = CodFacultad;
         this.NombreFacultad = NombreFacultad;
     }
 
-    public clsFacultad(String CodFacultad, String NombreFacultad, String EstatusFacultad) {
+    public clsDepartamento(String CodFacultad, String NombreFacultad, String EstatusFacultad) {
         this.CodFacultad = CodFacultad;
         this.NombreFacultad = NombreFacultad;
         this.EstatusFacultad = EstatusFacultad;
@@ -64,35 +64,35 @@ public class clsFacultad {
         return "clsFacultad{" + "CodFacultad=" + CodFacultad + ", NombreFacultad=" + NombreFacultad + ",EstatusFacultad=" + EstatusFacultad + '}';
     }
     //Metodos de acceso a la capa controlador
-    public clsFacultad getBuscarInformacionFacultadPorNombre(clsFacultad facultad)
+    public clsDepartamento getBuscarInformacionFacultadPorNombre(clsDepartamento facultad)
     {
-        daoFacultad daofacultad = new daoFacultad();
+        daoNomina daofacultad = new daoNomina();
         return daofacultad.consultaFacultadesPorNombre(facultad);
     }
-    public clsFacultad getBuscarInformacionFacultadPorId(clsFacultad facultad)
+    public clsDepartamento getBuscarInformacionFacultadPorId(clsDepartamento facultad)
     {
-        daoFacultad daofacultad = new daoFacultad();
+        daoNomina daofacultad = new daoNomina();
         return daofacultad.consultaFacultadesPorId(facultad);
     }    
-    public List<clsFacultad> getListadoFacultades()
+    public List<clsDepartamento> getListadoFacultades()
     {
-        daoFacultad daofacultad = new daoFacultad();
-        List<clsFacultad> listadoFacultades = daofacultad.consultaFacultades();
+        daoNomina daofacultad = new daoNomina();
+        List<clsDepartamento> listadoFacultades = daofacultad.consultaFacultades();
         return listadoFacultades;
     }
-    public int setBorrarFacultad(clsFacultad facultad)
+    public int setBorrarFacultad(clsDepartamento facultad)
     {
-        daoFacultad daofacultad= new daoFacultad();
+        daoNomina daofacultad= new daoNomina();
         return daofacultad.borrarFacultades(facultad);
     }          
-    public int setIngresarFacultad(clsFacultad facultad)
+    public int setIngresarFacultad(clsDepartamento facultad)
     {
-        daoFacultad daofacultad = new daoFacultad();
+        daoNomina daofacultad = new daoNomina();
         return daofacultad.ingresaFacultades(facultad);
     }              
-    public int setModificarFacultad(clsFacultad facultad)
+    public int setModificarFacultad(clsDepartamento facultad)
     {
-        daoFacultad daofacultad = new daoFacultad();
+        daoNomina daofacultad = new daoNomina();
         return daofacultad.actualizaFacultades(facultad);
     }              
 }

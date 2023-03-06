@@ -1,11 +1,11 @@
-/*
+             /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package modelo;
 
-import controlador.clsAulas;
+import controlador.clsNomina;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,34 +14,34 @@ import java.util.List;
  *
  * @author visitante
  */
-public class daoAulas {
+public class daoPuesto {
 
-    private static final String SQL_SELECT = "SELECT codigo_aula, nombre_aula, estatus_aula FROM aulas";
-    private static final String SQL_INSERT = "INSERT INTO aulas (codigo_aula, nombre_aula, estatus_aula) VALUES(?,?, ?)";
-    private static final String SQL_UPDATE = "UPDATE aulas SET nombre_aula=?, estatus_aula=? WHERE codigo_aula = ?";
-    private static final String SQL_DELETE = "DELETE FROM aulas WHERE codigo_aula=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT codigo_aula, nombre_aula, estatus_aula FROM aulas WHERE nombre_aula = ?";
-    private static final String SQL_SELECT_ID = "SELECT codigo_aula, nombre_aula, estatus_aula FROM aulas WHERE codigo_aula = ?";    
+    private static final String SQL_SELECT = "SELECT codigo_jornada, nombre_jornada, estatus_jornada FROM jornadas";
+    private static final String SQL_INSERT = "INSERT INTO jornadas(codigo_jornada,nombre_jornada, estatus_jornada) VALUES(?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE jornadas SET nombre_jornada=?, estatus_jornada=? WHERE codigo_jornada = ?";
+    private static final String SQL_DELETE = "DELETE FROM jornadas WHERE codigo_jornada=?";
+    private static final String SQL_SELECT_NOMBRE = "SELECT codigo_jornada, nombre_jornada, estatus_jornada FROM jornadas WHERE nombre_jornada = ?";
+    private static final String SQL_SELECT_ID = "SELECT codigo_jornada, nombre_jornada, estatus_jornada FROM jornadas  WHERE codigo_jornada = ?";    
 
-    public List<clsAulas> consultaAulas() {
+    public List<clsNomina> consultaJornadas() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<clsAulas> aulas = new ArrayList<>();
+        List<clsNomina> jornadas = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String codigo = rs.getString("codigo_aula");
-                String nombre = rs.getString("nombre_aula");
-                String estatus = rs.getString("estatus_aula");
-                clsAulas aula = new clsAulas();
-                aula.setcodigoAula(codigo);
-                aula.setNombreAula(nombre);
-                aula.setEstatusAula(estatus);
-                aulas.add(aula);
+                String codigo = rs.getString("codigo_jornada");
+                String nombre = rs.getString("nombre_jornada");
+                String estatus = rs.getString("estatus_jornada");
+                clsNomina jornada = new clsNomina();
+                jornada.setCodigo_jornada(codigo);
+                jornada.setNombre_jornada(nombre);
+                jornada.setEstatus_jornada(estatus);
+                jornadas.add(jornada);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -50,19 +50,19 @@ public class daoAulas {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return aulas;
+        return jornadas;
     }
 
-    public int ingresaAulas(clsAulas aula) {
+    public int ingresaJornadas(clsNomina jornada) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, aula.getCodidoAula());
-            stmt.setString(2, aula.getNombreAula());
-            stmt.setString(3, aula.getEstatusAula());
+            stmt.setString(1, jornada.getCodigo_jornada());
+            stmt.setString(2, jornada.getNombre_jornada());
+            stmt.setString(3, jornada.getEstatus_jornada());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -77,7 +77,7 @@ public class daoAulas {
         return rows;
     }
 
-    public int actualizaAulas(clsAulas aula) {
+    public int actualizaJornadas(clsNomina jornada) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -85,9 +85,9 @@ public class daoAulas {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, aula.getNombreAula());
-            stmt.setString(2, aula.getEstatusAula());
-            stmt.setString(3, aula.getCodidoAula());
+            stmt.setString(1, jornada.getNombre_jornada());
+            stmt.setString(2,jornada.getEstatus_jornada());
+            stmt.setString(3,jornada.getCodigo_jornada());
 
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
@@ -102,7 +102,7 @@ public class daoAulas {
         return rows;
     }
 
-    public int borrarAulas(clsAulas aula) {
+    public int borrarJornada(clsNomina jornada) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -111,7 +111,7 @@ public class daoAulas {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setString(1, aula.getCodidoAula());
+            stmt.setString(1, jornada.getCodigo_jornada());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -124,27 +124,27 @@ public class daoAulas {
         return rows;
     }
 
-    public clsAulas consultaAulasPorNombre(clsAulas aula) {
+    public clsNomina consultaJornadasPorNombre(clsNomina jornada) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + aula);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + jornada);
             stmt = conn.prepareStatement(SQL_SELECT_NOMBRE);
             //stmt.setInt(1, usuario.getIdUsuario());            
-            stmt.setString(1, aula.getNombreAula());
+            stmt.setString(1, jornada.getNombre_jornada());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String codigo = rs.getString("codigo_aula");
-                String nombre = rs.getString("nombre_aula");
-                String estatus = rs.getString("estatus_aula");
+                String codigo = rs.getString("codigo_jornada");
+                String nombre = rs.getString("nombre_jornada");
+                String estatus = rs.getString("estatus_jornada");
 
                 //usuario = new clsUsuario();
-                aula.setcodigoAula(codigo);
-                aula.setNombreAula(nombre);
-                aula.setEstatusAula(estatus);
-                System.out.println(" registro consultado: " + aula);                
+                jornada.setCodigo_jornada(codigo);
+                jornada.setNombre_jornada(nombre);
+                jornada.setEstatus_jornada(estatus);
+                System.out.println(" registro consultado: " + jornada);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -156,29 +156,29 @@ public class daoAulas {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return aula;
+        return jornada;
     }
-    public clsAulas consultaAulasPorCodigo(clsAulas aula) {
+    public clsNomina consultaJornadasporId(clsNomina jornada) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + aula);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + jornada);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setString(1, aula.getCodidoAula());            
+            stmt.setString(1, jornada.getCodigo_jornada());            
             //stmt.setString(1, usuario.getNombreUsuario());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String codigo = rs.getString("codigo_aula");
-                String nombre = rs.getString("nombre_aula");
-                String estatus = rs.getString("estatus_aula");
+                String codigo = rs.getString("codigo_jornada");
+                String nombre = rs.getString("nombre_jornada");
+                String estatus = rs.getString("estatus_jornada");
 
                 //usuario = new clsUsuario();
-                aula.setcodigoAula(codigo);
-                aula.setNombreAula(nombre);
-                aula.setEstatusAula(estatus);
-                System.out.println(" registro consultado: " + aula);                
+                jornada.setCodigo_jornada(codigo);
+                jornada.setNombre_jornada(nombre);
+                jornada.setEstatus_jornada(estatus);
+                System.out.println(" registro consultado: " + jornada);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -190,6 +190,6 @@ public class daoAulas {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return aula;
-    }    
+        return jornada;
+    }
 }

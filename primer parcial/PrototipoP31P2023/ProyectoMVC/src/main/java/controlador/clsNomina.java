@@ -5,29 +5,29 @@
  */
 package controlador;
 import java.util.List;
-import modelo.daoJornadas;
+import modelo.daoPuesto;
 /**
  *
  * @author visitante
  */
-public class clsJornadas {
+public class clsNomina {
     private String codigo_jornada;
     private String nombre_jornada;
     private String estatus_jornada;
 
-    public clsJornadas() {
+    public clsNomina() {
     }
 
-    public clsJornadas(String codigo_jornada) {
+    public clsNomina(String codigo_jornada) {
         this.codigo_jornada = codigo_jornada;
     }
 
-    public clsJornadas(String nombre_jornada, String estatus_jornada) {
+    public clsNomina(String nombre_jornada, String estatus_jornada) {
         this.nombre_jornada = nombre_jornada;
         this.estatus_jornada = estatus_jornada;
     }
 
-    public clsJornadas(String codigo_jornada, String nombre_jornada, String estatus_jornada) {
+    public clsNomina(String codigo_jornada, String nombre_jornada, String estatus_jornada) {
         this.codigo_jornada = codigo_jornada;
         this.nombre_jornada = nombre_jornada;
         this.estatus_jornada = estatus_jornada;
@@ -62,35 +62,35 @@ public class clsJornadas {
         return "clsJornadas{" + "codigo_jornada=" + codigo_jornada + ", nombre_jornada=" + nombre_jornada + ", estatus_jornada=" + estatus_jornada + '}';
     }
     //Metodos de acceso a la capa controlador
-  public clsJornadas getBuscarInformacionJornadasPorNombre(clsJornadas jornada)
+  public clsNomina getBuscarInformacionJornadasPorNombre(clsNomina jornada)
     {
-        daoJornadas daojornada= new daoJornadas ();
+        daoPuesto daojornada= new daoPuesto ();
         return daojornada.consultaJornadasPorNombre(jornada);
     }
-    public clsJornadas getBuscarInformacionJornadasPorId(clsJornadas jornada)
+    public clsNomina getBuscarInformacionJornadasPorId(clsNomina jornada)
     {
-        daoJornadas daojornada= new daoJornadas();
+        daoPuesto daojornada= new daoPuesto();
         return daojornada.consultaJornadasporId(jornada);
     }    
-    public List<clsJornadas> getListadoJornadas()
+    public List<clsNomina> getListadoJornadas()
     {
-        daoJornadas daojornada = new daoJornadas();
-        List<clsJornadas> listadoJornadas = daojornada.consultaJornadas();
+        daoPuesto daojornada = new daoPuesto();
+        List<clsNomina> listadoJornadas = daojornada.consultaJornadas();
         return listadoJornadas;
     }
-    public int setBorrarJornada(clsJornadas jornada)
+    public int setBorrarJornada(clsNomina jornada)
     {
-        daoJornadas daojornada = new daoJornadas();
+        daoPuesto daojornada = new daoPuesto();
         return daojornada.borrarJornada(jornada);
     }          
-    public int setIngresarJornada(clsJornadas jornada)
+    public int setIngresarJornada(clsNomina jornada)
     {
-        daoJornadas daojornada = new  daoJornadas();
+        daoPuesto daojornada = new  daoPuesto();
         return daojornada.ingresaJornadas(jornada);
     }              
-    public int setModificarJornada(clsJornadas jornada)
+    public int setModificarJornada(clsNomina jornada)
     {
-        daoJornadas daojornada = new daoJornadas();
+        daoPuesto daojornada = new daoPuesto();
         return daojornada.actualizaJornadas(jornada);
     }              
 

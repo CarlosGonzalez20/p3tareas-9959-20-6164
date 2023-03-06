@@ -5,12 +5,12 @@
  */
 package controlador;
 import java.util.List;
-import modelo.daoAulas;
+import modelo.daoDepartamento;
 /**
  *
  * @author visitante
  */
-public class clsAulas {
+public class clsEmpleado {
     private String codigoAula;
     private String NombreAula;
     private String EstatusAula;
@@ -39,22 +39,22 @@ public class clsAulas {
         this.EstatusAula = EstatusAula;
     }
 
-    public clsAulas(String codigoAula, String NombreAula, String EstatusAula) {
+    public clsEmpleado(String codigoAula, String NombreAula, String EstatusAula) {
         this.codigoAula = codigoAula;
         this.NombreAula = NombreAula;
         this.EstatusAula = EstatusAula;
     }
 
-    public clsAulas(String NombreAula, String EstatusAula) {
+    public clsEmpleado(String NombreAula, String EstatusAula) {
         this.NombreAula = NombreAula;
         this.EstatusAula = EstatusAula;
     }
 
-    public clsAulas(String codigoAula) {
+    public clsEmpleado(String codigoAula) {
         this.codigoAula = codigoAula;
     }
 
-    public clsAulas() {
+    public clsEmpleado() {
     }
 
     @Override
@@ -62,35 +62,35 @@ public class clsAulas {
         return "clsAulas{" + "codigoAula=" + codigoAula + ", NombreAula=" + NombreAula + ", EstatusAula=" + EstatusAula + '}';
     }
     //Metodos de acceso a la capa controlador
-    public clsAulas getBuscarInformacionAulaPorNombre(clsAulas aula)
+    public clsEmpleado getBuscarInformacionAulaPorNombre(clsEmpleado aula)
     {
-        daoAulas daoaula = new daoAulas();
+        daoDepartamento daoaula = new daoDepartamento();
         return daoaula.consultaAulasPorNombre(aula);
     }
-    public clsAulas getBuscarInformacionAulaPorCodigo(clsAulas aula)
+    public clsEmpleado getBuscarInformacionAulaPorCodigo(clsEmpleado aula)
     {
-        daoAulas daoaula = new daoAulas();
+        daoDepartamento daoaula = new daoDepartamento();
         return daoaula.consultaAulasPorCodigo(aula);
     }    
-    public List<clsAulas> getListadoAulas()
+    public List<clsEmpleado> getListadoAulas()
     {
-        daoAulas daoaula = new daoAulas();
-        List<clsAulas> listadoUsuarios = daoaula.consultaAulas();
+        daoDepartamento daoaula = new daoDepartamento();
+        List<clsEmpleado> listadoUsuarios = daoaula.consultaAulas();
         return listadoUsuarios;
     }
-    public int setBorrarAulas(clsAulas aula)
+    public int setBorrarAulas(clsEmpleado aula)
     {
-        daoAulas daoaula = new daoAulas();
+        daoDepartamento daoaula = new daoDepartamento();
         return daoaula.borrarAulas(aula);
     }          
-    public int setIngresarAulas(clsAulas aula)
+    public int setIngresarAulas(clsEmpleado aula)
     {
-        daoAulas daoaula = new daoAulas();
+        daoDepartamento daoaula = new daoDepartamento();
         return daoaula.ingresaAulas(aula);
     }              
-    public int setModificarAulas(clsAulas aula)
+    public int setModificarAulas(clsEmpleado aula)
     {
-        daoAulas daoaula = new daoAulas();
+        daoDepartamento daoaula = new daoDepartamento();
         return daoaula.actualizaAulas(aula);
     }              
 }
