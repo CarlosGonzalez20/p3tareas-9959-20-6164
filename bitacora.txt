@@ -1,0 +1,77 @@
+commit bc9f971e13a40c8a100e39197cf9905d91bdd681
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Mon Mar 6 12:59:56 2023 -0600
+
+    agregando cls y dao de Concepto, pero no me da tiempo de terminar el frm ni el video
+
+commit 67fcc221ef32acad7099e460b40b4c3a7835d4cb
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Mon Mar 6 12:16:48 2023 -0600
+
+    agregando estructura para poder desarrollar el programa ssolicitado
+
+commit 898b64aeb6be5c143abf3bd8f75f9845b81bbc27
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Mon Feb 20 10:15:52 2023 -0600
+
+    agregando diferentes proyectos
+
+commit 79e7727fbdd82e26b0ee67ed97703e3202ded161
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Wed Feb 8 10:55:03 2023 -0600
+
+    agregando totito y MVC
+
+commit fad3417212865c2cdf6be3c55527204aa3e09490
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Wed Jan 25 11:37:09 2023 -0600
+
+    probando extensiones de git ignore
+
+commit f033973c0d4b9497f3e6300f94ae24bc2d4404a3
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Wed Jan 25 11:34:35 2023 -0600
+
+    adding folders
+
+commit b66337915ddeff18e6e397c958269c8df6a63417
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Wed Jan 25 11:33:52 2023 -0600
+
+    fixing folders to git ignore
+
+commit c773c41653da70d8f7329e2239ed92be4039089a
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Wed Jan 25 11:07:44 2023 -0600
+
+    fixing git ignore
+
+commit 6d6d1421c866ff31b27b0fc512d0bcfdfd6ce47e
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Tue Jan 24 21:53:47 2023 -0600
+
+    review and improvements in the program provided by the professor
+
+commit c368cf3a555a24a2ad55733530b99e637555cf5b
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Mon Jan 23 12:08:49 2023 -0600
+
+    adding git ignore (from teacher's folder)
+
+commit 819e70765e2e738d2d2c3d3fea1f6bb73e597194
+Author: CarlosGonzalez20 <ll3224645@gmail.com>
+Date:   Mon Jan 23 11:30:58 2023 -0600
+
+    first commit
+
+commit 1793322045f3dbddb5bc9abce102c243737cf1d6
+Author: Carlos González <97981499+CarlosGonzalez20@users.noreply.github.com>
+Date:   Mon Jan 23 11:02:56 2023 -0600
+
+    Update README.md
+
+commit be37b28435ed891e90dbca0375474a97512ae9d5
+Author: Carlos González <97981499+CarlosGonzalez20@users.noreply.github.com>
+Date:   Mon Jan 23 10:59:23 2023 -0600
+
+    Initial commit

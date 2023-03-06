@@ -96,7 +96,7 @@ public class clsConcepto {
         List<clsConcepto> listadoConcepto = daoconcepto.consultaConcepto();
         return listadoConcepto;
     }
-    public int setBorrarCurso(clsConcepto concepto)
+    public int setBorrarConcepto(clsConcepto concepto)
     {
         daoConcepto daoconcepto = new daoConcepto();
         return daoconcepto.borrarConcepto(concepto);

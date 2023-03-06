@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class daoConcepto {
 
-    private static final String SQL_SELECT = "SELECT codigo_concepto, nombre_concepto, efecto:concepto, estatus_concepto FROM empresa";
-    private static final String SQL_INSERT = "INSERT INTO empresa(codigo_concepto, nombre_concepto, efecto_concepto, estatus_concepto) VALUES(?, ?, ?, ?)";
+    private static final String SQL_SELECT = "SELECT codigo_concepto, nombre_concepto, efecto_concepto, estatus_concepto FROM concepto";
+    private static final String SQL_INSERT = "INSERT INTO concepto(codigo_concepto, nombre_concepto, efecto_concepto, estatus_concepto) VALUES(?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE concepto SET nombre_concepto=?, efecto_concepto=?, estatus_concepto=? WHERE codigo_concepto = ?";
     private static final String SQL_DELETE = "DELETE FROM concepto WHERE codigo_concepto=?";
     private static final String SQL_SELECT_NOMBRE = "SELECT codigo_concepto, nombre_concepto, efecto_concepto, estatus_concepto FROM empresa WHERE nombre_concepto = ?";
